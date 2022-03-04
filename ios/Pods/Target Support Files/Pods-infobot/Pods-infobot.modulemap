@@ -1,0 +1,6 @@
+module Pods_infobot {
+  umbrella header "Pods-infobot-umbrella.h"
+
+  export *
+  module * { export * }
+}
