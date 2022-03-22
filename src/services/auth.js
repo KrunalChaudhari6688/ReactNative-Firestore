@@ -1,11 +1,12 @@
-import auth from '@react-native-firebase/auth';
-import firestore from '@react-native-firebase/firestore';
-import {Alert} from 'react-native';
-import {GoogleSignin} from '@react-native-google-signin/google-signin';
+import auth from "@react-native-firebase/auth";
+import firestore from "@react-native-firebase/firestore";
+import { Alert, ActivityIndicator } from "react-native";
+import { GoogleSignin } from "@react-native-google-signin/google-signin";
+import { useState } from "react";
 
 const googleLogin = async () => {
   // Get the users ID token
-  const {idToken} = await GoogleSignin.signIn();
+  const { idToken } = await GoogleSignin.signIn();
 
   // Create a Google credential with the token
   const googleCredential = auth.GoogleAuthProvider.credential(idToken);
@@ -14,16 +15,16 @@ const googleLogin = async () => {
   const user_sign_in = auth().signInWithCredential(googleCredential);
 
   user_sign_in
-    .then(user => {
+    .then((user) => {
       console.log(user);
     })
-    .catch(error => {
+    .catch((error) => {
       console.log(error);
     });
 };
 
 const createUserDb = (uid, fullName, email) => {
-  return firestore().collection('users').doc(uid).set({
+  return firestore().collection("users").doc(uid).set({
     uid,
     fullName,
     email,
@@ -33,11 +34,11 @@ const createUserDb = (uid, fullName, email) => {
 // signup handling
 const signUp = async (fullName, email, password) => {
   if (!fullName || !email || !password) {
-    Alert.alert('Error', 'Please enter all fields');
+    Alert.alert("Error", "Please enter all fields");
   } else {
     try {
       const cred = await auth().createUserWithEmailAndPassword(email, password);
-      const {uid} = cred.user;
+      const { uid } = cred.user;
 
       auth().currentUser.updateProfile({
         displayName: fullName,
@@ -52,7 +53,7 @@ const signUp = async (fullName, email, password) => {
 
 const signIn = async (email, password) => {
   if (!email || !password) {
-    Alert.alert('Error', 'Please enter all fields');
+    Alert.alert("Error", "Please enter all fields");
   } else {
     try {
       await auth().signInWithEmailAndPassword(email, password);
@@ -62,9 +63,9 @@ const signIn = async (email, password) => {
   }
 };
 
-const forgetPassword = email => {
+const forgetPassword = (email) => {
   if (!email) {
-    Alert.alert('Error', 'Please enter email');
+    Alert.alert("Error", "Please enter email");
   } else {
     return auth().sendPasswordResetEmail(email);
   }

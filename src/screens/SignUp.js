@@ -1,37 +1,37 @@
-import React, {useState} from 'react';
-import {View, StyleSheet, Dimensions, Image, Text} from 'react-native';
-import {colors} from '../constants';
-import {Button, Input, TextButton} from '../components';
+import React, { useState } from "react";
+import { View, StyleSheet, Dimensions, Image, Text } from "react-native";
+import { colors } from "../constants";
+import { Button, Input, TextButton } from "../components";
 // services
-import {Auth} from '../services';
+import { Auth } from "../services";
 
-const {width, height} = Dimensions.get('window');
+const { width, height } = Dimensions.get("window");
 
-export default SignUp = ({navigation}) => {
+export default SignUp = ({ navigation }) => {
   const [userName, setUserName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
   return (
     <View style={styles.container}>
-      <Image source={require('../assets/logo.png')} style={styles.logo} />
+      <Image source={require("../assets/logo.png")} style={styles.logo} />
       <Text style={styles.heading}>RN Firebase</Text>
       <Text style={styles.heading1}>Register an account here.</Text>
       <Input
         placeholder="Full Name"
         value={userName}
-        onChangeText={e => setUserName(e)}
+        onChangeText={(e) => setUserName(e)}
       />
       <Input
         placeholder="Email"
         value={email}
-        onChangeText={e => setEmail(e)}
+        onChangeText={(e) => setEmail(e)}
       />
       <Input
         placeholder="Password"
         secureTextEntry={true}
         value={password}
-        onChangeText={e => setPassword(e)}
+        onChangeText={(e) => setPassword(e)}
       />
 
       <Button
@@ -41,7 +41,7 @@ export default SignUp = ({navigation}) => {
 
       <TextButton
         text="Have an account? Login"
-        onPress={() => navigation.navigate('Login')}
+        onPress={() => navigation.navigate("Login")}
       />
     </View>
   );
@@ -52,18 +52,18 @@ const styles = StyleSheet.create({
     height,
     width,
     flex: 1,
-    backgroundColor: '#98cce3',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#98cce3",
+    alignItems: "center",
+    justifyContent: "center",
   },
   heading: {
-    color: '#262626',
+    color: "#262626",
     fontSize: 30,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     paddingVertical: 35,
   },
   heading1: {
-    color: '#262626',
+    color: "#262626",
     fontSize: 18,
     bottom: 25,
   },
@@ -71,6 +71,6 @@ const styles = StyleSheet.create({
     top: 30,
     height: 150,
     width: 150,
-    resizeMode: 'cover',
+    resizeMode: "cover",
   },
 });

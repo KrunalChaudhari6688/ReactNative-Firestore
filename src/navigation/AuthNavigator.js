@@ -1,5 +1,5 @@
-import React from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import React from "react";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Login, SignUp, ForgetPassword } from "../screens";
 
 const Stack = createNativeStackNavigator();
@@ -7,7 +7,7 @@ const Stack = createNativeStackNavigator();
 export default AuthNavigator = () => (
   <Stack.Navigator
     screenOptions={{
-      headerShown: null
+      headerShown: null,
     }}
   >
     <Stack.Screen
@@ -16,18 +16,15 @@ export default AuthNavigator = () => (
       component={Login}
     />
     <Stack.Screen
-      options={{ 
-        title: 'Sign Up Form', 
+      options={{
+        title: "Sign Up Form",
         headerStyle: {
-          backgroundColor: '#98cce3',
-        } 
+          backgroundColor: "#98cce3",
+        },
       }}
       name="SignUp"
       component={SignUp}
     />
-    <Stack.Screen
-      name="ForgetPassword"
-      component={ForgetPassword}
-    />
+    <Stack.Screen name="ForgetPassword" component={ForgetPassword} />
   </Stack.Navigator>
-)
+);
